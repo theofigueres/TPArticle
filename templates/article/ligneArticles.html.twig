@@ -5,29 +5,38 @@
 {% block body %}
 
 <div class="example-wrapper">
+    <a href="/ads/new">
+        <button type="button" class="btn btn-primary">Créer un article</button>
+    </a>
     <h1>Modification articles</h1>
+    <br>
     <div class="row">
+            <table class="table table-active" style="color: black">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th class="col">Libelle</th>
+                        <th scope="col">PRIX</th>
+                        <th scope="col">Changement</th>
+                    </tr>
+                </thead>
+                <tbody>
         {% for article in articles %}
-        <table class="table table-active" style="color: black">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Libelle</th>
-                    <th scope="col">PRIX</th>
-                    <th scope="col">Column heading</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="table-active">
-                <td>{{article.id}}</td>
-                <td>{{article.libelle}}</td>
-                <td>{{article.prix}} euros</td>
-                <td>Column content</td>
-                </tr>
-            </tbody>
-        </table> 
-        
+                    <tr id="block_{{article.id}}" class="table-active">
+                    <td>{{article.id}}</td>
+                    <td>{{article.libelle}}</td>
+                    <td>{{article.prix}} euros</td>
+                    <td>
+                        <a href="/modificationArticle/{{article.id}}">
+                            <button type="button" class="btn btn-success">modifier</button>
+                        </a>
+                        <button type="button" data-action="delete" data-target="#block_{{article.id}}" 
+                        class="btn btn-danger">supprimer</button>
+                    </td>
+                    </tr>
         {% endfor %}
+                </tbody>
+            </table> 
     </div>
 </div>
 {% endblock %}

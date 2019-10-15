@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArticleController extends AbstractController
@@ -25,6 +26,45 @@ class ArticleController extends AbstractController
     public function listeArticlesLigne(ArticleRepository $repo)
     {
         return $this->render('article/ligneArticles.html.twig', [
+            'articles' => $repo->findAll()
+        ]);
+    }
+
+
+    /**
+     * Permet
+     * 
+     * @Route("/ads/new", name="ads_create")
+     * 
+     * @return Response
+     */
+    public function create(){
+        $ad = new Article();
+
+        $form = $this->createFormBuilder($ad)
+                     ->add('Libelle')
+                     ->add('Prix')
+                     ->add('description')
+                     ->add('save', SubmitType::class, [
+                         'label' => 'Créer la nouvelle annonce',
+                         'attr' => [
+                             'class' => 'btn btn-primary'
+                         ]
+                     ])
+                     ->getForm();
+
+        return $this->render('article/new.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @Route("/modificationArticle/{id}", name="article_modification")
+     */
+    public function modificationArticle(ArticleRepository $repo)
+    {
+        return $this->render('article/editArticle.html.twig', [
             'articles' => $repo->findAll()
         ]);
     }

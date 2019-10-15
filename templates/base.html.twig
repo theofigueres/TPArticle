@@ -17,9 +17,12 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{path('articles_liste')}}">Liste des Articles <span class="sr-only">(current)</span></a>
-            </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{path('articles_liste')}}">Liste des Articles <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{path('articles_ligne')}}">Modification Articles<span class="sr-only">(current)</span></a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -31,6 +34,17 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+</div>
+<script>
+    function handleDeLeButtons() {
+        $('button[data-action="delete"]').click(function(){
+            const target = this.dataset.target;
+            $(target).remove();
+        })
+    }
+
+    handleDeLeButtons();
+</script>
 
     {% block javascripts %}{% endblock %}
     </body>
