@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,16 +33,16 @@ class ArticleController extends AbstractController
 
 
     /**
-     * Permet
+     * Permet de créer une annonce
      * 
      * @Route("/ads/new", name="ads_create")
      * 
      * @return Response
      */
-    public function create(){
-        $ad = new Article();
+    public function create(Request $request){
+        $article = new Article();
 
-        $form = $this->createFormBuilder($ad)
+        $form = $this->createFormBuilder($article)
                      ->add('Libelle')
                      ->add('Prix')
                      ->add('description')
