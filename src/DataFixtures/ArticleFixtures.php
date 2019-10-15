@@ -15,7 +15,7 @@ class ArticleFixtures extends Fixture
 
         for ($i=1; $i < 100; $i++){ 
           $article = new Article();
-          $article->setLibelle($faker->sentence(6))
+          $article->setLibelle($faker->sentence(4))
                   ->setDescription($faker->paragraph(4))
                   ->setPrix(mt_rand(10,900))
                   ->setImage($faker->imageurl(1000,350));

@@ -14,12 +14,21 @@ class ArticleController extends AbstractController
      */
     public function listeArticles(ArticleRepository $repo)
     {
-        //chercher l'ensemble des articles et on le stock
-        $articles=$repo->findAll();
         return $this->render('article/index.html.twig', [
-            'articles' => $articles //on va le donner dans twig
+            'articles' => $repo->findAll()
         ]);
     }
+
+    /**
+     * @Route("/articlesLigne", name="articles_ligne")
+     */
+    public function listeArticlesLigne(ArticleRepository $repo)
+    {
+        return $this->render('article/ligneArticles.html.twig', [
+            'articles' => $repo->findAll()
+        ]);
+    }
+
 
     /**
      * @Route("/article/{id}", name="article_affiche")

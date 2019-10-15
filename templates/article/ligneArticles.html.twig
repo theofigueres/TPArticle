@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes articles{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Modification articles</h1>
+    <div class="row">
+        {% for article in articles %}
+        <table class="table table-active" style="color: black">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Libelle</th>
+                    <th scope="col">PRIX</th>
+                    <th scope="col">Column heading</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-active">
+                <td>{{article.id}}</td>
+                <td>{{article.libelle}}</td>
+                <td>{{article.prix}} euros</td>
+                <td>Column content</td>
+                </tr>
+            </tbody>
+        </table> 
+        
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
